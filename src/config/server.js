@@ -3,6 +3,7 @@ import {json} from "body-parser";
 import {conexion} from "./sequelize";
 import {producto_router} from "../routes/producto";
 import {usuario_router} from "../routes/usuario";
+import {categoria_router} from '../routes/categoria'
 
 
 export default class Server {

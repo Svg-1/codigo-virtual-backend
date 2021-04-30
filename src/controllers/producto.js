@@ -36,7 +36,7 @@ export const crearProducto = async (req, res) => {
 }
 };
 
-export const ListarProductos = async(req, res)=>{
+export const listarProductos = async(req, res)=>{
     try{
         const productos = await Producto.findAll();
         return res.json({

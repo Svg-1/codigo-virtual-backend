@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.ListarProductos = exports.crearProducto = void 0;
+exports.listarProductos = exports.crearProducto = void 0;
 
 var _relaciones = require("../config/relaciones");
 
@@ -44,7 +44,7 @@ const crearProducto = async (req, res) => {
 
 exports.crearProducto = crearProducto;
 
-const ListarProductos = async (req, res) => {
+const listarProductos = async (req, res) => {
   try {
     const productos = await _relaciones.Producto.findAll();
     return res.json({
@@ -61,4 +61,4 @@ const ListarProductos = async (req, res) => {
   }
 };
 
-exports.ListarProductos = ListarProductos;
+exports.listarProductos = listarProductos;

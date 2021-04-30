@@ -15,6 +15,8 @@ var _producto = require("../routes/producto");
 
 var _usuario = require("../routes/usuario");
 
+var _categoria = require("../routes/categoria");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 class Server {
@@ -34,7 +36,7 @@ class Server {
   rutas() {
     this.app.use(_producto.producto_router);
     this.app.use(_usuario.usuario_router);
-    this.app.use(categoria_router);
+    this.app.use(_categoria.categoria_router);
     this.app.get("/", (req, res) => res.send("Bienvenido a mi API"));
   }
 
