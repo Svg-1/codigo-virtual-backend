@@ -50,7 +50,7 @@ Estante.belongsTo(Categoria, {
   // estante tiene una categoria
   foreignKey: "categorias_id"
 });
-Estante.hasMany(productoEstante, {
+Estante.hasMany(ProductoEstante, {
   foreignKey: {
     name: "estantes_id",
     allowNull: false
