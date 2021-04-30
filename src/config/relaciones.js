@@ -38,7 +38,7 @@ Estante.hasMany(ProductoEstante, {
         allowNull: false,
     },
 });
-productoEstante.belongsTo(Estante,{
+ProductoEstante.belongsTo(Estante,{
     foreignKey: "estantes_id",
 });
 Producto.hasMany(ProductoEstante, {
@@ -47,7 +47,7 @@ Producto.hasMany(ProductoEstante, {
         allowNull: false,
     },
 });
-productoEstante.belongsTo(Producto,{
+ProductoEstante.belongsTo(Producto,{
     foreignKey: "productos_id",
 });
 
