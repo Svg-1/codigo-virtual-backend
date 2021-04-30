@@ -7,19 +7,26 @@ exports.conexion = void 0;
 
 var _sequelize = require("sequelize");
 
-const conexion = new _sequelize.Sequelize("almacen", //database name
-"root", //username
-"svgpass0123", //mi password
+const conexion = process.env.JAWSDB_URL ? new _sequelize.Sequelize(process.env.JAWSDB_URL, {
+  dialect: "mysql",
+  timezone: "-05:00",
+  logging: false,
+  dialectOptions: {
+    dateStrings: true
+  }
+}) : new _sequelize.Sequelize("almacen", // database name
+"root", // username
+"root", // password
 {
   dialect: "mysql",
-  // también podemos usar dialectos para pgadmin, sqlserver, sqlite, mariadb, mysql,.
-  // one of 'mysql'|'mariadb'| 'postgres' |'mssql'| para sqlite se usa concection URI
+  // tambien podemos usar dialectos para pgadmin, sqlserver, sqlite3, mariadb, mysql
+  // /* one of 'mysql' | 'mariadb' | 'postgres' | 'mssql' */ para sqlite se usa connection URI
   host: "127.0.0.1",
-  port: "3306",
+  port: 3306,
   timezone: "-05:00",
-  //no funciona en SQLITE
+  // no funciona en SQLITE
   dialectOptions: {
-    // sirve para que al momento de mostrar las fechas, automaticamnete las convierta en string y no tener que hacer unna conversión manual. 
+    // sirve para que al momento de mostrar las fechas, automaticamente las convierta en string y no tener que hacer una conversion manual
     dateStrings: true
   },
   logging: false
