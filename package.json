@@ -1,0 +1,24 @@
+{
+  "devDependencies": {
+    "@babel/core": "^7.14.0",
+    "@babel/node": "^7.13.13",
+    "@babel/preset-env": "^7.14.1",
+    "cli": "^1.0.1",
+    "dotenv": "^9.0.0"  
+  }
+  //abajo de license:
+  "scripts": { 
+    "start:dev": "nodemon --exec babel-node ./src/index.js",
+    "build": "babelsrc/ --out-dir build/"
+    },
+
+
+  },
+  "dependencies": {
+    "@google-cloud/storage": "^5.8.5",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.12.7",
+    "multer": "^1.4.2"
+  }
+}
