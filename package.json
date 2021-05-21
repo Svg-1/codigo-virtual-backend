@@ -1,0 +1,24 @@
+{
+  "devDependencies": {
+    "@babel/cli": "^7.14.3",
+    "@babel/core": "^7.14.3",
+    "@babel/node": "^7.14.2"
+  },
+  "name": "codigo-virtual-backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/Svg-1/codigo-virtual-backend.git",
+  "author": "Sandra Valdivia Gómez <valdivia.gomez.sandra@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "node ./build/index.js",
+    "start:dev": "nodemon --exec babel-node ./src/index.js",
+    "build": "babel src --out-dir build"
+  },
+  "dependencies": {
+    "@babel/preset-env": "^7.14.2",
+    "body-parser": "^1.19.0",
+    "build": "^0.1.4",
+    "express": "^4.17.1"
+  }
+}
