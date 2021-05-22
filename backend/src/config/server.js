@@ -46,8 +46,8 @@ constructor() {
         });
     }
     configuracionSockets() {
-        const usuarios = [];
-        const mensajes = [];
+        let usuarios = [];
+        let mensajes = [];
         this.io.on("connect", (cliente) => {   //metodo on: cuando un cliente se conecte, para recibirlo
             //el método connect: se llamará cuando un cliente se conecte al servicio de sockets.         
         console.log("SE CONECTÓ EL CLIENTE:");
@@ -66,12 +66,39 @@ constructor() {
             
             usuarios = usuarios.filter((usuario) => 
                 usuario.id !== cliente.id);
+                mensajes = mensajes.filter((usuarios) => usuario.id  //aumentar para limpiar, dice:.. enviado fecha
+                !== cliente.id);
                 console.log(usuarios);
                 console.log(motivo);
-                this.io.emit("lista-usuarios", usuarios);                       
+                this.io.emit("lista-usuarios", usuarios);
+                cliente.broadcast.emit("Lista-mensajes",mensajes);                       
         });
-      });
-    }
+        //recibir el evento crear-mensaje e imprimir el mensaje enviado:
+        cliente.on("crear-mensaje", (mensaje) => {
+            //Para que salga dice: texto enviado el ::fecha
+            const {nombre} = usuarios.filter(
+                (usuario) => usuario.id === cliente.id
+            ) [0];
+       
+            mensajes.push({
+                id: cliente.id,
+                nombre, //aumentar para limpiar, dice:.. enviado fecha
+                mensaje, 
+                fecha: new Date(),
+            });
+            //cuando llamamos al cliente en el cual estamos conectados y hacemos un emit (cliente.emit(...)) solamnete se va a emitir el evetno al mismo cliente. 
+            //si llamamos al método cliente: broadcast.emit() hara un broadcast a todos los demás clientes conectados al socket EXCEPTUANDO al propio cliente que emitió el evento.
+            //this.io.emit()=> emitirá el evetno a todos los clientes conectados al socket.
+            //cleinte.emit("Lista-mensajes", mensajes);
+            this.io.emit("Lista-mensajes", mensajes); //en lugar de llmaar al objeto io lo estamos llamando cliente. Para: 
+         });
+         //para saber el id del cleinte: 
+         cliente.emit("cliente", cliente.id);
+
+        this.io.emit("Lista-usuarios", usuarios); // con esto apenas se conecten los usuarios saldrá: Los usuarios están conectados.
+      });      
+      }
+    
     start() {
     this.httpServer.listen(this.puerto, () => {
         console.log(
