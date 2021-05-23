@@ -3,6 +3,7 @@ import {json} from "body-parser";
 import {createServer} from "http";
 import {connect} from "mongoose";
 import { Server as socketio } from "socket.io";
+import { ingresarCoordenada } from "../controllers/sockets";
 
 export default class Server {
     constructor() {
@@ -35,6 +36,7 @@ export default class Server {
         this.io.on("connect", (cliente) => {
             console.log(`Se conectó el cliente ${cliente.id}`);
             cliente.on("coordenada", (data) => {
+              ingresarCoordenada(data)
               console.log(data);
             });
         });

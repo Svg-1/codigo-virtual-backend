@@ -16,6 +16,12 @@ const usuarioSchema = new Schema({
     nombre: {
         type: Schema.Types.String,
         required: true,
+        unique: true,
+    },
+    //agregando color que tendrá cada usuario.
+    color: {
+        type: Schema.Types.String,
+        required: true,
     },
     coordenadas: [coordenadasSchema],
 },
